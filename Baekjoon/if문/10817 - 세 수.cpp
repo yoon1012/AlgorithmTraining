@@ -8,14 +8,17 @@ int main(void)
     
     cin >> num[0] >> num[1] >> num[2];
 
-    for (int i = 0 ; i < 2 ; i++)
+    for (int i = 0 ; i < 3 - 1 ; i++)
     {
-        for (int j = 1 ; j < 3 ; j++)
+        for (int j = 0 ; j < 3 - 1 - i ; j++)
         {
-            int temp;
-            temp = num[i];
-            num[i] = num[j];
-            num[j] = temp;
+            if (num[j] < num[j + 1])
+            {
+                int temp;
+                temp = num[j];
+                num[j] = num[j + 1];
+                num[j + 1] = temp;
+            }
         }
     }
 
