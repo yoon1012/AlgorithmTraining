@@ -3,7 +3,8 @@
 
 using namespace std;
 
-string solution(int a, int b) {
+string solution(int a, int b)
+{
     string answer = "";
     int days[12] = {31, 29, 31, 30, 31, 30, 31, 31,
                     30, 31, 30, 31};
