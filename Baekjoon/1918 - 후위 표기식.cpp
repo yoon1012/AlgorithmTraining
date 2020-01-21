@@ -12,7 +12,6 @@ int main(void)
 
 	string answer = "";
 
-	// 비슷하게 생각은 했는데 해결 방법에서 막혔다.
 	for (int i = 0; i < expression.size(); i++)
 	{
 		const char c = expression[i];
@@ -23,7 +22,7 @@ int main(void)
 		}
 		else if (c == '+' || c == '-')
 		{
-			// ( 이외의 모든 연산자에 대해 pop 되어야 한다.
+			// ( 를 제외한 모든 연산자를 만나면 pop 되어야 한다.
 			while (!s.empty() && (s.top() != '('))
 			{
 				answer += s.top();
@@ -34,7 +33,7 @@ int main(void)
 		}
 		else if (c == '*' || c == '/')
 		{
-			// * 또는 / 가 있을 때만 pop 되어야 한다.
+			// * 또는 / 를 만나면 pop 되어야 한다.
 			while (!s.empty() && (s.top() == '*' || s.top() == '/'))
 			{
 				answer += s.top();
