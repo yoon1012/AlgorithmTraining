@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int d[100001][4];
+long long d[100001][4];
 long long mod = 1000000009;
 
 void solve()
@@ -27,7 +27,12 @@ void solve()
 		{
 			d[i][3] = d[i - 3][1] + d[i - 3][2];
 
-			if (i == 3) d[i][3] = 1;
+			if (i == 3)
+			{
+				d[i][1] = 1;
+				d[i][2] = 1;
+				d[i][3] = 1;
+			}
 		}
 
 		d[i][1] %= mod;
