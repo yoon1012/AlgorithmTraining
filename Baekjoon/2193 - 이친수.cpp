@@ -2,21 +2,22 @@
 
 using namespace std;
 
-int d[91];
+long long d[91];
 
 int main(void)
 {
-	int n;
-	cin >> n;
-
+	d[0] = 0;
 	d[1] = 1;
-	d[2] = 1;
 
-	for (int i = 3; i <= n; i++)
+	for (int i = 2; i < 91; i++)
 	{
 		d[i] = d[i - 1] + d[i - 2];
 	}
 
+	int n;
+	cin >> n;
+
 	cout << d[n] << "\n";
+	
 	return 0;
 }
