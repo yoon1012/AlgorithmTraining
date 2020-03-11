@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,35 +15,21 @@ int main(void)
 	{
 		cin >> a[i];
 	}
-
-	std::fill_n(d, 100001, 0);
 	
-	for (int i = 1; i <= n; i++)
-	{
-		if (i == 1)
-		{
-			d[i] = a[i];
-		}
-		else if (d[i - 1] + a[i] > a[i])
-		{
-			d[i] = d[i - 1] + a[i];
-		}
-		else
-		{
-			d[i] = a[i];
-		}
-	}
+	d[1] = a[1];
 
-	int max = d[1];
+	int maxSum = -1000;
 
 	for (int i = 2; i <= n; i++)
 	{
-		if (max < d[i])
-		{
-			max = d[i];
-		}
+		d[i] = max(d[i - 1] + a[i], a[i]);
 	}
 
-	cout << max << "\n";
+	for (int i = 1; i <= n; i++)
+	{
+		maxSum = max(maxSum, d[i]);
+	}
+	
+	cout << maxSum << "\n";
 	return 0;
 }
