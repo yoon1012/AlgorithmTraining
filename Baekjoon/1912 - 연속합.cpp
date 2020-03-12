@@ -18,7 +18,7 @@ int main(void)
 	
 	d[1] = a[1];
 
-	int maxSum = -1000;
+	int maxSum = d[1];
 
 	for (int i = 2; i <= n; i++)
 	{
