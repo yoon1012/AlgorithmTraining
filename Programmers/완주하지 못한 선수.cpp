@@ -1,6 +1,6 @@
 // 해시
 // Level 1
-// 2021년 01월 11일
+// 01-11-2021
 
 #include <string>
 #include <vector>
