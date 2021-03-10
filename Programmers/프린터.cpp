@@ -12,9 +12,7 @@ using namespace std;
 int solution(vector<int> priorities, int location)
 {
     int answer = 0;
-
     bool isPrinted = false;
-    int copyCount = 0;
 
     queue<int> indices;
 
@@ -28,10 +26,9 @@ int solution(vector<int> priorities, int location)
         int front = indices.front();
         vector<int> prioritiesCopy(priorities);
 
-        // 내림차순으로 정렬
-        sort(prioritiesCopy.begin(), prioritiesCopy.end(), greater<int>());
+        auto maxElement = *max_element(prioritiesCopy.begin(), prioritiesCopy.end());
         
-        if (priorities[front] < prioritiesCopy[0] && prioritiesCopy[0] > 0)
+        if (priorities[front] < maxElement && maxElement > 0)
         {
             indices.pop();
             indices.push(front);
@@ -39,8 +36,8 @@ int solution(vector<int> priorities, int location)
         }
 
         indices.pop();
-        copyCount++;
-        priorities[front] = -1; // 이미 인쇄한 문서 플래그
+        answer++;
+        priorities[front] = -1;
         
         if (front == location)
         {
@@ -48,7 +45,6 @@ int solution(vector<int> priorities, int location)
         }
     }
 
-    answer = copyCount;
     return answer;
 }
 
