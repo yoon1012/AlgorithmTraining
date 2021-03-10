@@ -1,5 +1,4 @@
 // 해시
-// Level 2
 // 03-03-2021
 
 #include <string>
