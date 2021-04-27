@@ -1,6 +1,7 @@
 // 탐욕법
 // 04-26-2021
-// 시간 초과
+
+// 벡터에서 제거 → 시간 초과
 
 #include <string>
 #include <vector>
@@ -13,48 +14,18 @@ int solution(vector<int> people, int limit)
     int answer = 0;
     sort(people.begin(), people.end());
 
-    // 몸무게와 제한이 같은 경우
-    if (people[0] == limit)
+    int start = 0;
+    int end = people.size() - 1;
+
+    while (start <= end)
     {
-        answer = people.size();
-        return answer;
-    }
-
-    const int initialSize = people.size();
-    
-    while (!people.empty())
-    {
-        if (answer >= initialSize)
-            break;
-
-        int max = people[people.size() - 1];
-        int restLimit = limit - max;
-
-        if (restLimit >= people[0] && people.size() > 1)
+        if (people[start] + people[end] <= limit)
         {
-            auto result = lower_bound(people.begin(), people.end() - 1, restLimit);
-
-            if (result != people.end())
-            {
-                if (*result > restLimit || distance(result, people.end() - 1) == 0)
-                {
-                    result--;
-                }
-
-                result = find(people.begin(), people.end() - 1, *result);
-
-                if (result != people.end())
-                {
-                    answer++;
-                    people.pop_back();
-                    people.erase(result);
-                    continue;
-                }
-            }
+            start++;
         }
-
+        
+        end--;
         answer++;
-        people.pop_back();
     }
 
     return answer;
