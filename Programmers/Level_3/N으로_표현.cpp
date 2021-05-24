@@ -1,5 +1,5 @@
 // 동적계획법
-// 05-21-2021
+// 05-24-2021
 
 #include <string>
 #include <vector>
@@ -22,18 +22,16 @@ int solution(int N, int number)
 
     for (int i = 0; i < 8; i++)
     {
-        unordered_set<int> di;
+        unordered_set<int> ds;
+        int value = N * pow(10, i);
 
-        if (i == 0)
+        if (i != 0)
         {
-            di.insert(N);
-        }
-        else
-        {
-            di.insert(N * pow(10, i) + *d[i - 1].begin());
+            value += *d[i - 1].begin();
         }
 
-        d.push_back(di);
+        ds.insert(value);
+        d.push_back(ds);
     }
 
     for (int i = 1; i < 8; i++)
@@ -45,9 +43,9 @@ int solution(int N, int number)
                 for (auto b = d[i - j - 1].begin(); b != d[i - j - 1].end(); b++)
                 {
                     d[i].insert(*a + *b);
-                    d[i].insert(*a * *b);
                     d[i].insert(*a - *b);
-
+                    d[i].insert(*a * *b);
+                    
                     if (*b != 0)
                     {
                         d[i].insert(*a / *b);
@@ -63,7 +61,7 @@ int solution(int N, int number)
         }
     }
 
-    if (answer == 0 || answer > 8)
+    if (answer < 1 || answer > 8)
     {
         answer = -1;
     }
